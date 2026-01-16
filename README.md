@@ -7,6 +7,8 @@ This project is designed to scrape weather data from Weather Underground for a s
 - [Requirements](#requirements)
 - [Setup](#setup)
 - [Usage](#usage)
+  - [Scrape Data](#scrape-data)
+  - [Convert Data to Metric Units](#convert-data-to-metric-units)
 - [Script Explanation](#script-explanation)
 - [License](#license)
 
@@ -33,23 +35,70 @@ You can install the required Python libraries by running:
 
 ```bash
 pip install selenium beautifulsoup4 pandas webdriver-manager
+```
 
 Make sure that Google Chrome is installed on your machine, as the script uses ChromeDriver for automation.
 
 ## Setup
 
 1. Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/indraputra-147/Wunderground-scraper.git
+```
+
 2. Navigate to the project folder:
+
+```bash
+cd Wunderground-scraper
+```
+
 3. Install the required libraries using pip:
+
+```bash
+pip install -r requirements.txt
+```
+
 4. You can adjust the STATION, START_DATE, and END_DATE variables in the script to scrape data for your desired weather station and date range.
 
 ## Usage
+
+### Scrape Data
+
 1. Open the scrape_weather.py file.
 2. Modify the STATION, START_DATE, and END_DATE variables to specify the weather station and the range of dates for which you want to scrape data.
 Example:
+```python
+STATION = "IBOGOR123"
+START_DATE = "2025-06-19"
+END_DATE = "2026-01-15"
+```
 3. Run the script:
+```bash
+python scrape_weather.py
+```
 4. The script will scrape the data for each date in the specified range and save each day's data to a separate CSV file in the format STATION_DATE_daily.csv.
 Example:
+```
+IBOGOR123_2025-06-19_daily.csv
+IBOGOR123_2025-06-20_daily.csv
+```
+
+### Convert Data to Metric Units
+
+If you have scraped the data in United States Customary System (USCS) and would like to convert the temperature and other variables to metric units, you can use the convert_celsius.py script.
+1.Place the CSV files (such as IBOGOR123_2025-06-19_daily.csv) in the same directory as the convert_celsius.py script.
+2. Run the convert_celsius.py script to convert all the CSV files in the directory from Fahrenheit to Celsius.
+Example:
+```bash
+python convert_celsius.py
+```
+3. The script will overwrite the existing CSV files with the temperature values converted to Celsius. If you wish to keep the original files, you can modify the script to save the converted data to new files.
+Example output for converted CSV:
+```
+IBOGOR123_2025-06-19_daily_converted.csv
+```
+The variables will now in metric system.
 
 ## Script Explanation
 
